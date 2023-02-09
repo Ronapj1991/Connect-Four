@@ -158,4 +158,8 @@ class Board
     ck_win_hztl?(row, col, symbol) ||
     ck_win_vtcl?(row, col, symbol)
   end
+
+  def is_occupied?(row, col)
+    @grid[row][col] != " "
+  end
 end
