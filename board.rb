@@ -4,10 +4,10 @@ class Board
     @grid =  [
       [" ", " ", " ", " ", " ", " ", " "],
       [" ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", "X", " ", " ", " "],
-      [" ", " ", " ", " ", "X", " ", " "],
-      [" ", " ", " ", " ", " ", "X", " "],
-      [" ", " ", " ", " ", " ", " ", "X"]
+      [" ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " "]
     ]
   end
 
@@ -23,7 +23,13 @@ class Board
     }
   end
 
-  def self.updateCell(row, col, symbol)
+  def update_cell(col, symbol)
+    row = 5
+    
+    until !is_occupied?(row, col)
+      row -= 1
+    end
+
     @grid[row][col] = symbol
   end
 
@@ -161,5 +167,19 @@ class Board
 
   def is_occupied?(row, col)
     @grid[row][col] != " "
+  end
+
+  def col_full?(col)
+    @grid[0][col] != " "
+  end
+
+  def highest_row(col)
+    row = 0
+
+    while @grid[row][col] == " "
+      row += 1
+    end
+
+    row
   end
 end
